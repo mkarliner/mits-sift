@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="dist/css/style.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.0-dev/dc.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.10/d3.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.7/crossfilter.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.0-dev/dc.js"></script>
+
+</head>
+
+<body id="home">
+  <!-- <script src="https://d3js.org/d3.v4.min.js"></script> -->
+
+  <h1>Email Analysis - D3.js + DC.js + Crossfilter</h1>
+  <h2>Domain-specific Tasks (examples)</h2>
+  <div id='content'>
+    <p1><b>1. Identifying Task:</b> Can you identify irregularties in the email activity at time ‘xx' and time ‘yy'?</p1>
+    <p1><b>2. Comparison Task:</b> Are their any irregularities when you compare email behavior of individual ‘A' with individual `B'?</p1>
+    <p1><b>3. Changes Detection Task:</b> How does the email communication of individual `A' change over time?</p1>
+    <p1><b>4. Counting Task:</b> How many individuals have sent emails more than 2000 in a calendar year 2001? Who are they?</p1>
+    <p1><b>5. Exploratory Task:</b> What happened in each of the year?</p1>
+
+    <h3>
+  <span>
+  <button class="button" onclick="javascript:dc.filterAll(); dc.renderAll();">Reset All </button>
+           </span>
+  </h3>
+
+
+    <h2>1. Temporal Behavior</h2>
+    <div class='row'>
+      <div id="yearHeat"></div>
+      <div id="yearChart"></div>
+    </div>
+    <div class='row'>
+      <div id="monthHeat"></div>
+      <div id="monthChart"></div>
+    </div>
+    <div class='row'>
+      <div id="dayHeat"></div>
+      <div id="dayChart"></div>
+    </div>
+    <div class='row'>
+      <div id="daynameHeat"></div>
+      <div id="daynameChart"></div>
+    </div>
+    <div class='row'>
+      <div id="hourChart"></div>
+    </div>
+    <h2>2. Individuals Behavior</h2>
+    <div class='row'>
+      <div id="messageIdChart">
+        <p>Message ID's</p>
+        <h4>
+  <span>
+          <a class="reset" href="javascript:messageIdChart.filterAll();dc.redrawAll();"
+            style="display: none;">reset
+          </a>
+        </span>
+    </h4>
+      </div>
+      <div id="sentChart">
+        <p>Senders</p>
+      </div>
+      <div id="receiveChart">
+        <p>Receivers</p>
+      </div>
+    </div>
+    <h2>3. Content Behavior</h2>
+    <div class='row'>
+      <div id="affairChart">
+        <p>Affair</p>
+      </div>
+      <div id="fercChart">
+        <p>FERC</p>
+      </div>
+      <div id="investigationChart">
+        <p>Investigation</p>
+      </div>
+    </div>
+    <div class='row'>
+      <div id="meetingChart">
+        <p>Meeting</p>
+      </div>
+      <div id="planChart">
+        <p>Plan</p>
+      </div>
+      <div id="servicesChart">
+        <p>Services</p>
+      </div>
+    </div>
+  </div>
+  <!-- Your Sift view bundle -->
+  <script src="dist/js/view.umd-es2015.min.js"></script>
+</body>
+
+</html>
