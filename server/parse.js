@@ -34,6 +34,7 @@ module.exports = function(got) {
       Month: date.getMonth(),
       Day: date.getDate(),
       DayName: days[date.getDay()],
+      Hour: date.getHours(),
       has_FERC: 0,
       has_Affair: 0,
       has_Devastating: 0,
