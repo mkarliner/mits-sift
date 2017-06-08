@@ -381,6 +381,7 @@
 	      messageIdChart.width(500).height(300).elasticX(true).dimension(messageIdDimension).group(messageIdGroup).colors("#fc8d59").render();
 	
 	      messageIdChart.data(function (messageIdGroup) {
+	        console.log("MSGID: ", messageIdGroup.top(10));
 	        return messageIdGroup.top(10);
 	      });
 	

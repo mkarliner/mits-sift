@@ -454,6 +454,7 @@ export default class MyView extends SiftView {
           .render();
 
         messageIdChart.data(function(messageIdGroup) {
+		 console.log("MSGID: ", messageIdGroup.top(10));
           return messageIdGroup.top((10));
         });
 

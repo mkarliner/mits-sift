@@ -87,12 +87,6 @@
 	      // Register for storage update events on the "count" bucket so we can update the UI
 	      this.storage.subscribe(['messageSummarys'], this._suHandler);
 	      switch (state.type) {
-	        case 'email-thread':
-	          var w = 0;
-	          try {
-	            w = state.params.detail.words;
-	          } catch (e) {}
-	          return { html: 'email-thread.html', data: { words: w } };
 	        case 'summary':
 	          return { html: 'summary.html', data: this.getSummarys() };
 	        default:
