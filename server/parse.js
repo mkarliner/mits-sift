@@ -23,36 +23,45 @@ module.exports = function(got) {
     // Parse the JMAP information for each message more info here https://docs.redsift.com/docs/server-code-jmap
     const jmapInfo = JSON.parse(datum.value);
     let date = new Date(jmapInfo.date)
+    //
+    //
     console.log("DETAILS: ", jmapInfo)
     // Not all emails contain a textBody so we do a cascade selection
-    const body = jmapInfo.textBody || jmapInfo.strippedHtmlBody || '';
-    let summary = {
-      MessageID: jmapInfo.id,
-      SenderEmail: jmapInfo.from.email,
-      RecieverEmail: jmapInfo.to ? jmapInfo.to[0].email : "Unknown@mail.com",
-      Year: date.getFullYear(),
-      Month: date.getMonth(),
-      Day: date.getDate(),
-      DayName: days[date.getDay()],
-      Hour: date.getHours(),
-      has_FERC: 0,
-      has_Affair: 0,
-      has_Devastating: 0,
-      has_Investigation: 0,
-      has_Disclosure: 0,
-      has_Bonus: 0,
-      has_Meeting: 0,
-      has_Plan: 0,
-      has_Services: 0,
-      has_Report: 0,
-      email_Value: 1
+    let recipients = jmapInfo.to;
+    if (!recipients) {
+      recipients = ["Unknown@mail.com"];
     }
-    // Emit into "messages" stores so count can be calculated by the "Count" node
-    results.push({
-      name: 'messageSummarys',
-      key: jmapInfo.id,
-      value: summary
-    });
+    recipients.forEach(r => {
+      const body = jmapInfo.textBody || jmapInfo.strippedHtmlBody || '';
+      let summary = {
+        MessageID: jmapInfo.id,
+        SenderEmail: jmapInfo.from.email,
+        RecieverEmail: r,
+        Year: date.getFullYear(),
+        Month: date.getMonth(),
+        Day: date.getDate(),
+        DayName: days[date.getDay()],
+        Hour: date.getHours(),
+        has_FERC: 0,
+        has_Affair: 0,
+        has_Devastating: 0,
+        has_Investigation: 0,
+        has_Disclosure: 0,
+        has_Bonus: 0,
+        has_Meeting: 0,
+        has_Plan: 0,
+        has_Services: 0,
+        has_Report: 0,
+        email_Value: 1
+      }
+      // Emit into "messages" stores so count can be calculated by the "Count" node
+      results.push({
+        name: 'messageSummarys',
+        key: jmapInfo.id,
+        value: summary
+      });
+    })
+
   });
 
   // Possible return values are: undefined, null, promises, single or an array of objects
