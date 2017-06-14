@@ -36,7 +36,7 @@ module.exports = function(got) {
       let summary = {
         MessageID: jmapInfo.id,
         SenderEmail: jmapInfo.from.email,
-        RecieverEmail: r,
+        RecieverEmail: r.email,
         Year: date.getFullYear(),
         Month: date.getMonth(),
         Day: date.getDate(),
